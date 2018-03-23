@@ -1,3 +1,18 @@
+window.WebFontConfig = {
+  google: { families: [ 'Gloria Hallelujah' ] },
+  active: function() {
+    sessionStorage.fonts = true;
+  }
+};
+(function() {
+  var wf = document.createElement('script');
+  wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
+  wf.type = 'text/javascript';
+  wf.async = 'true';
+  var s = document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(wf, s);
+})();
+
 var res = {
   img_bg : "resources/back.png",
   img_enemy : "resources/unchi.png",
@@ -51,7 +66,7 @@ window.onload = function(){
                     // this._catにねこのSpriteを保持する
                     this._cat = sprite;
                     // ゲーム中のスコア表示の作成
-                    var label = cc.LabelTTF.create("Score: 0", "Arial", 40);
+                    var label = cc.LabelTTF.create("Score: 0", "Gloria Hallelujah", 40);
                     label.setPosition(80, size.height - 30);
                     label.setColor(cc.color("#000080"));
                     this.addChild(label, 1);
@@ -203,13 +218,14 @@ window.onload = function(){
                   cc.audioEngine.playEffect(res.se_dead);
                   var size = cc.director.getWinSize();
                   // スコア（結果）の作成
-                  var label = cc.LabelTTF.create("GameOver\nScore is : " + this._score, "Arial", 40);
+                  var label = cc.LabelTTF.create("GameOver\nScore is : " + this._score, "Gloria Hallelujah", 40);
                   label.setPosition(size.width/2, size.height/2);
                   label.setColor(cc.color("#dc143c"));
                   this.addChild(label, 1);
                   var button = new cc.MenuItemFont("Restart",this.restartGame,this);
                   button.setPosition(size.width/2, size.height/2 - 200);
                   button.setColor(cc.color("#00008b"));
+                  button.setFontName("Gloria Hallelujah");
                   var menu = new cc.Menu(button);
                   menu.x = 0;
                   menu.y = 0;
